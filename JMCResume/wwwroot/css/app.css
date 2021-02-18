@@ -3,7 +3,6 @@
 html, body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-image: linear-gradient(90deg, rgb(5, 22, 37) 0%, rgb(54, 68, 81) 70%);
-    font-size: 1.1rem;
 }
 
 a, .btn-link {
@@ -22,6 +21,22 @@ a, .btn-link {
 
 .bg-accent {
     background-color: rgb(211, 55, 62);
+}
+.my-button{
+    display: flex;
+    padding: 0;
+}
+.my-button input {
+    display: inline-block;
+    color: white;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    -o-text-overflow: clip;
+    text-overflow: clip;
 }
 
 .content {
@@ -61,6 +76,8 @@ a, .btn-link {
 
 .content {
     background-color: white;
+    display:flex;
+    flex-direction:column;
 }
 
 .accent {

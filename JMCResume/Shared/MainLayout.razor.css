@@ -27,6 +27,12 @@
         text-overflow: ellipsis;
     }
 
+.content {
+    height: 95vh;
+    margin: 10px;
+    box-shadow: black 5px 5px 30px 1px;
+}
+
 @media (max-width: 640.98px) {
     .top-row:not(.auth) {
         display: none;
@@ -46,11 +52,12 @@
         flex-direction: row;
     }
 
-    .sidebar {
+    .my-sidebar {
         width: 250px;
         height: 100vh;
         position: sticky;
         top: 0;
+        border-left: rgb(30,41,80) 1px solid;
     }
 
     .top-row {

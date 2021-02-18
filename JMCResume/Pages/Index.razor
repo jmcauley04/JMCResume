@@ -1,26 +1,27 @@
 ﻿@page "/"
 <div class="row m-2">
     <div class="col-4">
-        <p class="accent">Hi, I'm</p>
+        <h5 class="accent">Hi, I'm</h5>
 
         <JMCResume.Shared.Components.Heading Text="Michael Cauley" Superheader="true" />
-
-        <p>Software Engineer</p>
+        <div class="text-lg-left">
+            <h5>Software Engineer</h5>
+        </div>
     </div>
     <div class="col-8" style="border:1px solid black">
         This is where my photo will go
     </div>
 </div>
 <div class="row text-white text-center">
-    <div class="col-6 bg-accent" style="height:50px;">
-        <p style="margin-top:10px">Download Resume</p>
+    <div class="col-6 flex-column my-button">
+        <input type="button" class="bg-accent text-uppercase" value="Download Resume" />
     </div>
-    <div class="col-6 bg-prim" style="height:50px;">
-        <p style="margin-top:10px">View Portfolio</p>
+    <div class="col-6 flex-column my-button">
+        <input type="button" class="bg-prim text-uppercase" value="View Portfolio" />
     </div>
 </div>
 
-<section>
+<div class="overflow-auto">
     <div class="row m-2">
         <div class="col-4">
             <JMCResume.Shared.Components.Heading Text="About" />
@@ -28,7 +29,95 @@
     </div>
     <div class="row m-2">
         <div class="col-12">
-            <p>This is where my body text needs to go; what's up with MC?</p>
+            <p class="text-sm-left">
+                I am a coder from South Georgia. I currently work in the aerospace manufacturing industry at PCC Airfoils as the IT Supervisor
+                (Acting Manager) but my passion is development. Aerospace took a hard hit during the economic decline brought on by
+                COVID and in order to mitigate the risk of my getting laid off, I took on this role. My working experience spans the full
+                Microsoft technology stack, Allen Bradley tools for automation in manufacturing, and Inductive Automation's Ignition. Relative
+                to my peers, I feel that I spend more time planning solution architecture because I believe that in all the tasks
+                we do there is both a way to do things and a better way to do things; as important as it is to get the job done and on time,
+                it is AT LEAST as important that the result be one that is maintainable and extendable such that a future developer can
+                work confidently in the code we leave behind.
+            </p>
         </div>
     </div>
-</section>
+    <br />
+    <div class="list-group">
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="col-6 flex-column">
+                <JMCResume.Shared.Components.SkillProgressBar SkillTitle="Backend Development" Percent="95" />
+            </div>
+            <p class="mb-1">
+                My understanding and appreciation of backend programming truly began when I read the book "C# 7.0 in a Nutshell"
+                by Joseph Albahari and Ben Albahari. I realized then that though I was able to accomplish tasks, my work was more in-line with
+                what I now consider to be scripting. Next I became interested in design patterns and began practicing by creating a desktop
+                application that invokes each of these patterns using clean code. These are the reasons I have become a very confident
+                and able backend developer.
+            </p>
+            <small>C#, object-oriented programming, T-SQL, python, ASP.NET</small>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="col-6 flex-column">
+                <JMCResume.Shared.Components.SkillProgressBar SkillTitle="Frontend Development" Percent="90" />
+            </div>
+            <p class="mb-1">
+                An application should behave in a clear and obvious manner. The functionality should not be a typical user. This
+                behaviour is not a stretch goal, it's a primary goal.
+            </p>
+            <small>WPF, Winforms, Blazor (WASM / Server), HTML, CSS</small>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="col-6 flex-column">
+                <JMCResume.Shared.Components.SkillProgressBar SkillTitle="Relational Databases" Percent="80" />
+            </div>
+            <p class="mb-1">
+
+            </p>
+            <small>T-SQL, MS-SQL, MySQL</small>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="col-6 flex-column">
+                <JMCResume.Shared.Components.SkillProgressBar SkillTitle="Reporting" Percent="80" />
+            </div>
+            <p class="mb-1">
+
+            </p>
+            <small>Power BI (DAX, M), SSRS, Excel (PowerQuery)</small>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="col-6 flex-column">
+                <JMCResume.Shared.Components.SkillProgressBar SkillTitle="Manufacturing Automation" Percent="95" />
+            </div>
+            <p class="mb-1">
+
+            </p>
+            <small>Allen Bradley PLCs, Ignition, RSView, Ladder Logic, Network Troubleshooting</small>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="col-6 flex-column">
+                <JMCResume.Shared.Components.SkillProgressBar SkillTitle="Source Control" Percent="75" />
+            </div>
+            <p class="mb-1">
+
+            </p>
+            <small>TFS, Git, TFVC</small>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="col-6 flex-column">
+                <JMCResume.Shared.Components.SkillProgressBar SkillTitle="DevOps" Percent="40" />
+            </div>
+            <p class="mb-1">
+
+            </p>
+            <small>Azure DevOps, YAML</small>
+        </div>
+
+    </div>
+</div>
