@@ -33,6 +33,7 @@
     box-shadow: black 5px 5px 30px 1px;
 }
 
+
 @media (max-width: 640.98px) {
     .top-row:not(.auth) {
         display: none;
@@ -58,6 +59,8 @@
         position: sticky;
         top: 0;
         border-left: rgb(30,41,80) 1px solid;
+        display: grid;
+        grid-template-rows: 1fr 2fr 50px;
     }
 
     .top-row {
