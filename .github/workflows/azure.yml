@@ -15,36 +15,134 @@
 #
 # For more information on GitHub Actions for Azure, refer to https://github.com/Azure/Actions
 # For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
-on:
-  release:
-    types: [created]
+variables:
+  - name: _TeamName
+    value: AspNetCore
+  - name: DOTNET_SKIP_FIRST_TIME_EXPERIENCE
+    value: true
+  - name: _PublishUsingPipelines
+    value: true
+  - name: _DotNetArtifactsCategory
+    value: ASPNETBLAZOR
+  - name: _DotNetValidationArtifactsCategory
+    value: ASPNETBLAZOR
+  - name: Build.Repository.Clean
+    value: true
+  # used for post-build phases, internal builds only
+  - ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
+    - group: DotNet-AspNet-SDLValidation-Params
 
-env:
-  AZURE_WEBAPP_NAME: your-app-name    # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
-  NODE_VERSION: '10.x'                # set this to the node version to use
+# CI and PR triggers
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+    - release/*
+    - internal/release/3.*
 
-jobs:
-  build-and-deploy:
-    name: Build and Deploy
-    runs-on: ubuntu-latest
-    environment: production
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ env.NODE_VERSION }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-    - name: npm install, build, and test
-      run: |
-        # Build and test the project, then
-        # deploy to Azure Web App.
-        npm install
-        npm run build --if-present
-        npm run test --if-present
-    - name: 'Deploy to Azure WebApp'
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+pr:
+  autoCancel: false
+  branches:
+    include:
+    - '*'
+
+stages:
+- stage: build
+  displayName: Build
+  jobs:
+  - template: /eng/common/templates/jobs/jobs.yml
+    parameters:
+      enablePublishBuildArtifacts: true
+      enablePublishTestResults: false
+      enablePublishUsingPipelines: ${{ variables._PublishUsingPipelines }}
+      enableTelemetry: true
+      helixRepo: dotnet/blazor
+      ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
+        enableMicrobuild: true
+        enablePublishBuildAssets: true
+      jobs:
+      - job: Windows
+        pool:
+          ${{ if eq(variables['System.TeamProject'], 'public') }}:
+            vmImage: windows-2019
+          ${{ if ne(variables['System.TeamProject'], 'public') }}:
+            name: NetCoreInternal-Pool
+            queue: BuildPool.Server.Amd64.VS2019
+        variables:
+          - name: _BuildConfig
+            value: Release
+          - name: _BuildArgs
+            value: ''
+          # PRs or external builds are not signed.
+          - ${{ if or(eq(variables['System.TeamProject'], 'public'), in(variables['Build.Reason'], 'PullRequest')) }}:
+            - name: _SignType
+              value: test
+            - name: _DotNetPublishToBlobFeed
+              value: false
+          # Only enable publishing in official builds.
+          - ${{ if and(eq(variables['System.TeamProject'], 'internal'), notin(variables['Build.Reason'], 'PullRequest')) }}:
+            # DotNet-Blob-Feed provides: dotnetfeed-storage-access-key-1
+            # Publish-Build-Assets provides: MaestroAccessToken, BotAccount-dotnet-maestro-bot-PAT
+            - group: DotNet-Blob-Feed
+            - group: Publish-Build-Assets
+            - name: _SignType
+              value: real
+            - name: _DotNetPublishToBlobFeed
+              value: true
+            - name: _BuildArgs
+              value: /p:DotNetSignType=$(_SignType)
+                     /p:TeamName=$(_TeamName)
+                     /p:PublishToAzure=true
+                     /p:DotNetPublishUsingPipelines=$(_PublishUsingPipelines)
+                     /p:DotNetArtifactsCategory=$(_DotNetArtifactsCategory)
+                     /p:DotNetPublishBlobFeedKey=$(dotnetfeed-storage-access-key-1)
+                     /p:DotNetPublishBlobFeedUrl=https://dotnetfeed.blob.core.windows.net/aspnet-blazor/index.json
+                     /p:DotNetPublishToBlobFeed=$(_DotNetPublishToBlobFeed) /p:OfficialBuildId=$(BUILD.BUILDNUMBER)
+                     /p:ManifestBuildBranch=$(Build.SourceBranchName)
+                     /p:ManifestBuildNumber=$(Build.BuildNumber)
+
+        steps:
+        - checkout: self
+          clean: true
+        - task: NuGetCommand@2
+          displayName: 'Clear NuGet caches'
+          condition: succeeded()
+          inputs:
+            command: custom
+            arguments: 'locals all -clear'
+        - script: eng\common\cibuild.cmd -configuration $(_BuildConfig) -prepareMachine $(_BuildArgs)
+          displayName: Build and Publish
+        - task: PublishBuildArtifacts@1
+          displayName: Upload package artifacts
+          condition: and(succeeded(), eq(variables['system.pullrequest.isfork'], false), eq(variables['_BuildConfig'], 'Release'))
+          inputs:
+            pathtoPublish: artifacts/packages/
+            artifactName: packages
+            artifactType: Container
+            parallel: true
+
+- ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest')) }}:
+  - template: eng\common\templates\post-build\post-build.yml
+    parameters:
+      # Disabled because this repo is still running into issues with signing validation, and the exclusions file doesn't work.
+      enableSigningValidation: false
+      # Shipped package contains minimal managed code and lots of repackaged external and native assemblies. We
+      # don't ship relevant PDBs except (for some assemblies) later in dotnet/aspnetcore.
+      enableSourceLinkValidation: false
+      # See https://github.com/dotnet/arcade/issues/2871
+      enableSymbolValidation: false
+      # This is to enable SDL runs part of Post-Build Validation Stage
+      SDLValidationParameters:
+        enable: true
+        continueOnError: false
+        params: ' -SourceToolsList @("policheck","credscan")
+        -TsaInstanceURL $(_TsaInstanceURL)
+        -TsaProjectName $(_TsaProjectName)
+        -TsaNotificationEmail $(_TsaNotificationEmail)
+        -TsaCodebaseAdmin $(_TsaCodebaseAdmin)
+        -TsaBugAreaPath $(_TsaBugAreaPath)
+        -TsaIterationPath $(_TsaIterationPath)
+        -TsaRepositoryName "Blazor"
+        -TsaCodebaseName "Blazor"
+        -TsaPublish $True'
