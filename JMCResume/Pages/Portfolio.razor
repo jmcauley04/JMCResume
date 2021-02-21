@@ -1,0 +1,138 @@
+﻿@page "/portfolio"
+
+<div class="row m-2">
+    <div class="col-4">
+        <JMCResume.Shared.Components.Heading Text="Portfolio" />
+    </div>
+</div>
+
+<div class="accordion" id="portfolioAccordion">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    my_Resume
+                </button>
+                <small>Blazor (client-side), C#, Bootstrap, HTML, CSS</small>
+            </h2>
+        </div>
+
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#portfolioAccordion">
+            <div class="card-body">
+                <p>
+                    This site. I won’t say much about it since by reading this, you are experiencing the work first-hand and can draw your own conclusions. Admittedly, I took design inspiration from others’ (color theme and layout) but the coding is entirely mine.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <JMCResume.Shared.SVGs.TheGroceryListLogo />
+                </button>
+                <small>Blazor (server), C#, T-SQL, Bootstrap, HTML, CSS</small>
+            </h2>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#portfolioAccordion">
+            <div class="card-body">
+                <p>
+                    This project is used by my wife and me to make grocery shopping easier.  A user picks which recipes he/she wants to make for the two-week period and a grocery list is aggregated automatically showing specific ingredients and quantities.  The user then checks off the things he/she already has and is left with the remainder to go shopping.  The user can also add non-meal related items to the list.
+                    <br />
+                    <br />
+                    The main <b>challenges</b> in this project were deciding how to control the user’s choices when creating a recipe (ie. ‘eggs’ vs ‘carton of eggs’), allowing the user to use various units for quantities, and maintaining proper sync if my wife and I were using the app at the same time – we only have one grocery list for both of us.
+                    <br />
+                    <br />
+                    The app could be <b>improved</b> by implementing a good database-driven inventory system that adds and subtracts according to which meals are eaten and according to expiration date and automatically removing the items that are already available.
+                </p>
+                <p>The image on the right is the login page. The logo is an SVG that I created for this project and I tried to stay with the theme throughout the application. I don't recall from where but I was inspired by another logo.  The app was designed with mobile-first in mind as I imagined it being used in a grocery store on a phone or tablet.</p>
+                <img id="grocery-list-login" src="/resources/grocerylist_login.png" alt="Login View" />
+                <img id="grocery-list-menu" src="/resources/grocerylist_menu.png" alt="Menu View" />
+                <p class="pt-3">The image on the left is the menu. It scrolls down to show a two-week period.</p>
+                <p class="pt-3" style="grid-column: 1;">The image on the right is of the grocery list that is generated from the selected menu.  The unit each item is converted to is chosen according to the magnitude of the item to be user-friendly.  Items are checked off using an SVG swap of an image consistent with the logo.</p>
+                <img id="grocery-list-list" src="/resources/grocerylist_list.png" alt="Grocery List View" />
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingThree">
+            <h2 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Experimentation Program (Design Patterns / Practice)
+                </button>
+                <small>Winforms, C#</small>
+            </h2>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#portfolioAccordion">
+            <div class="card-body">
+                <p>After creating a few WindowsFormApp1, WindowsFormApp2 applications I realized that I could save time by making re-usable code and create permanent reference to remind myself how to do things that I’d once discovered and forgotten by doing it inside a persistent application. To that end, I created this application to practice and share ways of doing things I was learning with my colleagues.</p>
+                <p>The image on the right is a list of the topics I have decided to add to this library over the years.</p>
+                <img id="practice-topics" src="/resources/practice_topics.png" alt="Topics View" />
+                <img id="practice-async" src="/resources/practice_async.png" alt="Async View" />
+                <p>The image above is a snippet of an <b>asyncronous progress bar</b> form that opens when topic two is selected. Note that async and parallel functionality is accessible.  The application serves to show how each behaves and allows the user to toggle them.</p>
+                <p style="grid-column: span 2;">The <b>command pattern</b> is one of the coded design patterns.  It is one of my favorite patterns.  This view below allows the user to drag the boxes around the screen with the mouse, to move the boxes with the buttons, to move the boxes with the keyboard, and to undo any of those moves with the undo button using the command pattern with an Execute and Undo logic and a Stack object with stack and pop logic.</p>
+                <img id="practice-commandpattern" src="/resources/practice_commandpattern.png" alt="Command Patterns View" />
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingFour">
+            <h2 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Furnace HMI Re-write (Work-project)
+                </button>
+                <small>Ignition, Python, PLCs, T-SQL</small>
+            </h2>
+        </div>
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#portfolioAccordion">
+            <div class="card-body">
+                <p>This project is one of the first manufacturing automation projects that I've worked on. I suggested and supported with data the idea that introducing <b>Indutive Automation's Ignition</b> to replace some of our very old RSView applications for HMIs would be a cost savings and a significant improvement for manageability. The HMI would communicate with our casting furnace PLCs to perform the casting process and communicate with SQL to validate inputs and outputs. As an added bonus, recipe management is now also handled in the HMI with a backing SQL database where as before, the recipes were simple notepad files that were being parsed by RSView. Due to some unexpected circumstances causing a huge priority shift, the project went from infancy to deployed in a little under a week.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingFive">
+            <h2 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    Engineer's Toolbox (Work-project)
+                </button>
+                <small>Winforms, C#, DevExpress, T-SQL, Statistics</small>
+            </h2>
+        </div>
+        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#portfolioAccordion">
+            <div class="card-body">
+                <p>The Engineer's Toolbox started out as a tool written for myself to perform data analysis. Later, I modified it to be usable by others and released it as a tool for engineers to quickly gain insights, especially on dimensional data. Some of the most useful features are: Quickly identified dimensions (features) by percent of non-conformance, calculating leadtimes and expected yields based on WIP, and calculating statistics on a subset of product.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingSix">
+            <h2 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    Automated Build, Test, and Release Pipelines (Work-project)
+                </button>
+                <small>Azure DevOps, YAML</small>
+            </h2>
+        </div>
+        <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#portfolioAccordion">
+            <div class="card-body">
+                <p>I created my division's first automated pipelines using Azure DevOps. We use an on-premise solution so the build pipeline required a manual setup since the hosted build pipelines were not available. Additionally, I established an approval gateway to prevent breach of policies stating approval are necessary before release. The process was straight forward and I documented it for future use.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingSeven">
+            <h2 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                    Information System Overhaul (Work-project)
+                </button>
+                <small>Blazor (server), ASP.NET, C#, T-SQL, Bootstrap, HTML, CSS</small>
+            </h2>
+        </div>
+        <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#portfolioAccordion">
+            <div class="card-body">
+                <p>This is a fairly new project. Presently, our entire system is comprised of hundreds of seperate applications performing extremely specific tasks. In order to reduce complexity and to maximize code re-use, I am planning to fully replace the system with an ASP.NET backed Blazor (server-side) solution. This change will pay for itself very quickly due to the amount of optimization opportunity that exists for both the development and user sides of these applications. This project is set to begin immediately after a blocking issue is resolved.</p>
+            </div>
+        </div>
+    </div>
+</div>

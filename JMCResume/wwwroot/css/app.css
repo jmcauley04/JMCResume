@@ -26,7 +26,7 @@ a, .btn-link {
     display: flex;
     padding: 0;
 }
-.my-button input {
+.my-button a {
     display: inline-block;
     color: white;
     -webkit-box-sizing: content-box;
@@ -84,3 +84,15 @@ a, .btn-link {
     color: rgb(211, 55, 62);
     stroke: rgb(211, 55, 62);
 }
+
+.cover-photo {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+    .cover-photo img {
+        background-image: linear-gradient( 0deg, rgb(5, 22, 37) 0%, rgb(54, 68, 81) 70%);
+        border-radius: 50%;
+        border: rgba(5,22,37,1) solid 3px;
+        box-shadow: black 1px 1px 8px;
+    }

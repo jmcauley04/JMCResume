@@ -1,6 +1,6 @@
 ﻿@page "/"
 <div class="row m-2">
-    <div class="col-4">
+    <div class="col-4" style="display:grid; align-content:center;">
         <h5 class="accent">Hi, I'm</h5>
 
         <JMCResume.Shared.Components.Heading Text="Michael Cauley" Superheader="true" />
@@ -8,16 +8,16 @@
             <h5>Software Engineer</h5>
         </div>
     </div>
-    <div class="col-8" style="border:1px solid black">
-        This is where my photo will go
+    <div class="col-8 cover-photo" style="text-align:center;">
+        <img height="400" src="/resources/profile.png" alt="Profile photo" />
     </div>
 </div>
 <div class="row text-white text-center">
     <div class="col-6 flex-column my-button">
-        <input type="button" class="bg-accent text-uppercase" value="Download Resume" />
+        <a class="bg-accent text-uppercase" href="/resources/resume.pdf" target="_blank" rel="noopener noreferrer" download>Download Resume</a>
     </div>
     <div class="col-6 flex-column my-button">
-        <input type="button" class="bg-prim text-uppercase" value="View Portfolio" />
+        <a class="bg-prim text-uppercase" href="portfolio">View Portfolio</a>
     </div>
 </div>
 
@@ -41,7 +41,11 @@
             </p>
         </div>
     </div>
-    <br />
+    <div class="row m-2">
+        <div class="col-4">
+            <JMCResume.Shared.Components.Heading Text="Skills" />
+        </div>
+    </div>
     <div class="list-group">
 
         <div class="list-group-item list-group-item-action flex-column align-items-start">
@@ -75,7 +79,7 @@
                 <JMCResume.Shared.Components.SkillProgressBar SkillTitle="Relational Databases" Percent="80" />
             </div>
             <p class="mb-1">
-                I began working with relational databases while working as a business analyst.  Since, I have made extensive use of MS-SQL almost daily and yet the technology is so powerful I still feel I have much to learn.  As of writing this, most recently, I re-designed a very poorly written stored procedure, 2000+ lines of purely unmanageable spaghetti acting on a single dataset to create a report, by breaking the code into logical chunks using table-valued functions and a user-defined type resulting in something understandable and runs in half the original time.
+                I began working with relational databases while working as a business analyst.  Since, I have made extensive use of MS-SQL almost daily and yet the technology is so powerful I often continue to discover new functionality. As of writing this, I recently re-designed a very poorly written stored procedure, 2000+ lines of purely unmanageable spaghetti acting on a single dataset to create a report, by breaking the code into logical chunks using table-valued functions and a user-defined type resulting in something understandable and runs in half the original time.
             </p>
             <small>T-SQL, MS-SQL, MySQL</small>
         </div>
@@ -105,19 +109,29 @@
                 <JMCResume.Shared.Components.SkillProgressBar SkillTitle="Source Control" Percent="75" />
             </div>
             <p class="mb-1">
-
+                Frequent fetches to address conflicts. Frequent commits and pushes to save and safely store work and to allow others to address conflicts. Finally, a pull request to merge changes with a master branch. Source control is a simple concept, albeit serving a critical function, and I believe I'm taking advantage of its primary benefits.  Admittedly, it's not a topic I've invested much research into so I may later discover that I'm wrong.
             </p>
             <small>TFS, Git, TFVC</small>
         </div>
 
         <div class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="col-6 flex-column">
-                <JMCResume.Shared.Components.SkillProgressBar SkillTitle="DevOps" Percent="40" />
+                <JMCResume.Shared.Components.SkillProgressBar SkillTitle="DevOps" Percent="60" />
             </div>
             <p class="mb-1">
-
+                My company has entered the DevOps world extremely late and still has not quite embraced the potential. Having recognized the value good DevOps can bring, I have pushed for this extensively up to creating our first build, test, and release pipelines to showcase the potential and benefits. We are an on-premise company so this meant working with YAML directly as the hosted pipelines are unavailable.
             </p>
             <small>Azure DevOps, YAML</small>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="col-6 flex-column">
+                <JMCResume.Shared.Components.SkillProgressBar SkillTitle="Other" Percent="80" />
+            </div>
+            <p class="mb-1">
+                Although development is my passion, I have a wide breadth of other skills that accentuate my abilities to create good solutions; key among these is my ability to define and measure a problem, analyze it to find an improvement plan, and finally implement a controllable solution.
+            </p>
+            <small>Problem Solving, Statistics, Mathematics, Engineering, Lean Six Sigma, Data Analysis</small>
         </div>
 
     </div>
