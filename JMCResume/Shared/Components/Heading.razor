@@ -1,0 +1,24 @@
+﻿
+@if (Superheader)
+{
+    <h2 class="display-4" style="font-weight:700;">@Text</h2>
+}
+else
+{
+    <h2 class="display-4" style="font-weight:700; font-size:2.5rem; margin-bottom:0px;">@Text</h2>
+}
+
+<svg height=@svgHeight width="50" class="accent">
+    <line x1="0" y1=@svgY x2="50" y2=@svgY style="stroke-width:1; stroke-linecap:round;" />
+</svg>
+
+@code{
+    [Parameter]
+    public string Text { get; set; }
+
+    [Parameter]
+    public bool Superheader { get; set; } = false;
+
+    int svgHeight => Superheader ? 50 : 20;
+    int svgY => svgHeight / 2;
+}

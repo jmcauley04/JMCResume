@@ -1,0 +1,59 @@
+﻿.card-header h2{
+    display:grid;
+    grid-template-columns: auto 1fr;
+}
+
+.card-header small {
+    font-size: .55rem;
+    color: dimgray;
+    align-self: center;
+    justify-self: end;
+}
+
+.card-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-height: 35vh;
+    overflow: auto;
+}
+
+.card-body p:first-of-type {
+    grid-column: span 2;
+}
+
+.card-body img {
+    border:solid;
+}
+
+#grocery-list-login {
+    grid-row: 2 / span 3;
+    grid-column: 2;
+    width: 90%;
+    justify-self: end;
+}
+
+#grocery-list-menu {
+    grid-row: 3 / span 4;
+    grid-column: 1;
+    width: 90%;
+}
+
+#grocery-list-list {
+    width: 90%;
+    justify-self: end;
+}
+
+#practice-topics {
+    width: 90%;
+    grid-column: 2;
+    grid-row: span 3;
+}
+
+#practice-commandpattern {
+    width: 100%;
+    grid-column: span 2;
+}
+
+#practice-async {
+    width: 90%;
+}

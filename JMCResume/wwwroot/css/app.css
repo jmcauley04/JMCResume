@@ -1,7 +1,8 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: linear-gradient(90deg, rgb(5, 22, 37) 0%, rgb(54, 68, 81) 70%);
 }
 
 a, .btn-link {
@@ -12,6 +13,30 @@ a, .btn-link {
     color: #fff;
     background-color: #1b6ec2;
     border-color: #1861ac;
+}
+
+.bg-prim {
+    background-color: rgb(1, 21, 40);
+}
+
+.bg-accent {
+    background-color: rgb(211, 55, 62);
+}
+.my-button{
+    display: flex;
+    padding: 0;
+}
+.my-button a {
+    display: inline-block;
+    color: white;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    -o-text-overflow: clip;
+    text-overflow: clip;
 }
 
 .content {
@@ -47,4 +72,27 @@ a, .btn-link {
         position: absolute;
         right: 0.75rem;
         top: 0.5rem;
+    }
+
+.content {
+    background-color: white;
+    display:flex;
+    flex-direction:column;
+}
+
+.accent {
+    color: rgb(211, 55, 62);
+    stroke: rgb(211, 55, 62);
+}
+
+.cover-photo {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+    .cover-photo img {
+        background-image: linear-gradient( 0deg, rgb(5, 22, 37) 0%, rgb(54, 68, 81) 70%);
+        border-radius: 50%;
+        border: rgba(5,22,37,1) solid 3px;
+        box-shadow: black 1px 1px 8px;
     }

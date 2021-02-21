@@ -1,7 +1,138 @@
 ﻿@page "/"
+<div class="row m-2">
+    <div class="col-4" style="display:grid; align-content:center;">
+        <h5 class="accent">Hi, I'm</h5>
 
-<h1>Hello, world!</h1>
+        <JMCResume.Shared.Components.Heading Text="Michael Cauley" Superheader="true" />
+        <div class="text-lg-left">
+            <h5>Software Engineer</h5>
+        </div>
+    </div>
+    <div class="col-8 cover-photo" style="text-align:center;">
+        <img height="400" src="/resources/profile.png" alt="Profile photo" />
+    </div>
+</div>
+<div class="row text-white text-center">
+    <div class="col-6 flex-column my-button">
+        <a class="bg-accent text-uppercase" href="/resources/resume.pdf" target="_blank" rel="noopener noreferrer" download>Download Resume</a>
+    </div>
+    <div class="col-6 flex-column my-button">
+        <a class="bg-prim text-uppercase" href="portfolio">View Portfolio</a>
+    </div>
+</div>
 
-Welcome to your new app.
+<div class="overflow-auto">
+    <div class="row m-2">
+        <div class="col-4">
+            <JMCResume.Shared.Components.Heading Text="About" />
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-12">
+            <p class="text-sm-left">
+                I am a coder from South Georgia. I currently work in the aerospace manufacturing industry at PCC Airfoils as the IT Supervisor
+                (Acting Manager) but my passion is development. Aerospace took a hard hit during the economic decline brought on by
+                COVID and in order to mitigate the risk of my getting laid off, I took on this role. My working experience spans the full
+                Microsoft technology stack, Allen Bradley tools for automation in manufacturing, and Inductive Automation's Ignition. Relative
+                to my peers, I feel that I spend more time planning solution architecture because I believe that in all the tasks
+                we do there is both a way to do things and a better way to do things; as important as it is to get the job done and on time,
+                it is AT LEAST as important that the result be one that is maintainable and extendable such that a future developer can
+                work confidently in the code we leave behind.
+            </p>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="col-4">
+            <JMCResume.Shared.Components.Heading Text="Skills" />
+        </div>
+    </div>
+    <div class="list-group">
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="col-6 flex-column">
+                <JMCResume.Shared.Components.SkillProgressBar SkillTitle="Backend Development" Percent="95" />
+            </div>
+            <p class="mb-1">
+                My understanding and appreciation of backend programming truly began when I read the book "C# 7.0 in a Nutshell"
+                by Joseph Albahari and Ben Albahari. I realized then that though I was able to accomplish tasks, my work was more in-line with
+                what I now consider to be scripting. Next I became interested in design patterns and began practicing by creating a desktop
+                application that invokes each of these patterns using clean code. These are the reasons I have become a very confident
+                and able backend developer.
+            </p>
+            <small>C#, object-oriented programming, T-SQL, python, ASP.NET</small>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="col-6 flex-column">
+                <JMCResume.Shared.Components.SkillProgressBar SkillTitle="Frontend Development" Percent="90" />
+            </div>
+            <p class="mb-1">
+                Frontend development is extremely important to me. Having been a user of poorly designed applications with confusing, tedious user experiences, I know first hand
+                how frustrating it can be when a program doesn't behave in a way that feels natural. This is what drives me to study and develop my abilities with frontend technologies.
+                It is my goal that a user shouldn't have to be extensively trained and shouldn't have to invest time reading documentation to understand how my product behaves.
+            </p>
+            <small>WPF, Winforms, Blazor (WASM / Server), HTML, CSS</small>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="col-6 flex-column">
+                <JMCResume.Shared.Components.SkillProgressBar SkillTitle="Relational Databases" Percent="80" />
+            </div>
+            <p class="mb-1">
+                I began working with relational databases while working as a business analyst.  Since, I have made extensive use of MS-SQL almost daily and yet the technology is so powerful I often continue to discover new functionality. As of writing this, I recently re-designed a very poorly written stored procedure, 2000+ lines of purely unmanageable spaghetti acting on a single dataset to create a report, by breaking the code into logical chunks using table-valued functions and a user-defined type resulting in something understandable and runs in half the original time.
+            </p>
+            <small>T-SQL, MS-SQL, MySQL</small>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="col-6 flex-column">
+                <JMCResume.Shared.Components.SkillProgressBar SkillTitle="Reporting" Percent="80" />
+            </div>
+            <p class="mb-1">
+                Accurate and easily consumed reporting is paramount to decision makers. Although my math-heavy background has allowed me to speak intelligently about why a median is more appropriate than a mean in certain circumstances and to explain how kurtosis and skewness can be used to identify concerns even while the average statistic is within the desired range, it is my study of reporting tools such as Power BI and SSRS that enables me to convey these understandings to decision makers so they can make informed decisions that impact the bottom line.
+            </p>
+            <small>Power BI (DAX, M), SSRS, Excel (PowerQuery)</small>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="col-6 flex-column">
+                <JMCResume.Shared.Components.SkillProgressBar SkillTitle="Manufacturing Automation" Percent="95" />
+            </div>
+            <p class="mb-1">
+                Working with PLCs has been an extremely rewarding aspect of my career. At my company, very few people understand ladder logic and even fewer understand HMIs so when I offered to lead a project to replace an outdated HMI running a core system in our plant with Inductive Automation’s Ignition and suggested we save money by not outsourcing the project there was some hesitation, then there was buy-in, and now the project is complete and with only a few minor issues that are immediately resolved upon discovery.  Having the confidence in myself to take on these challenges has allowed me to expand my knowledge in this area significantly and at a very quick rate.
+            </p>
+            <small>Allen Bradley PLCs, Ignition, RSView, Ladder Logic, Network Troubleshooting</small>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="col-6 flex-column">
+                <JMCResume.Shared.Components.SkillProgressBar SkillTitle="Source Control" Percent="75" />
+            </div>
+            <p class="mb-1">
+                Frequent fetches to address conflicts. Frequent commits and pushes to save and safely store work and to allow others to address conflicts. Finally, a pull request to merge changes with a master branch. Source control is a simple concept, albeit serving a critical function, and I believe I'm taking advantage of its primary benefits.  Admittedly, it's not a topic I've invested much research into so I may later discover that I'm wrong.
+            </p>
+            <small>TFS, Git, TFVC</small>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="col-6 flex-column">
+                <JMCResume.Shared.Components.SkillProgressBar SkillTitle="DevOps" Percent="60" />
+            </div>
+            <p class="mb-1">
+                My company has entered the DevOps world extremely late and still has not quite embraced the potential. Having recognized the value good DevOps can bring, I have pushed for this extensively up to creating our first build, test, and release pipelines to showcase the potential and benefits. We are an on-premise company so this meant working with YAML directly as the hosted pipelines are unavailable.
+            </p>
+            <small>Azure DevOps, YAML</small>
+        </div>
+
+        <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="col-6 flex-column">
+                <JMCResume.Shared.Components.SkillProgressBar SkillTitle="Other" Percent="80" />
+            </div>
+            <p class="mb-1">
+                Although development is my passion, I have a wide breadth of other skills that accentuate my abilities to create good solutions; key among these is my ability to define and measure a problem, analyze it to find an improvement plan, and finally implement a controllable solution.
+            </p>
+            <small>Problem Solving, Statistics, Mathematics, Engineering, Lean Six Sigma, Data Analysis</small>
+        </div>
+
+    </div>
+</div>

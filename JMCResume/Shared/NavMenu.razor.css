@@ -9,6 +9,8 @@
 
 .navbar-brand {
     font-size: 1.1rem;
+    width:100%;
+    text-align:center;
 }
 
 .oi {
@@ -38,10 +40,11 @@
         display: flex;
         align-items: center;
         line-height: 3rem;
+        justify-content: center;
     }
 
 .nav-item ::deep a.active {
-    background-color: rgba(255,255,255,0.25);
+    background-color: rgba(255,255,255,0.0);
     color: white;
 }
 
@@ -49,6 +52,18 @@
     background-color: rgba(255,255,255,0.1);
     color: white;
 }
+
+.bottom-row {
+    text-align:center;
+}
+
+    .bottom-row svg {
+        fill: rgba(255,255,255,0.8);
+    }
+
+    .bottom-row a {
+        margin: 0 20px;
+    }
 
 @media (min-width: 641px) {
     .navbar-toggler {
