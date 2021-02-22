@@ -84,15 +84,37 @@ a, .btn-link {
     color: rgb(211, 55, 62);
     stroke: rgb(211, 55, 62);
 }
+    .header-content {
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, auto);
+    }
 
 .cover-photo {
-    text-align: center;
-    padding-bottom: 20px;
+    background-image: linear-gradient( 0deg, rgb(5, 22, 37) 0%, rgb(54, 68, 81) 70%);
+    border-radius: 50%;
+    border: rgba(5,22,37,1) solid 3px;
+    box-shadow: black 1px 1px 8px;
+    grid-column: 2;
+    grid-row: span 3;
+    max-height: 400px;
+    justify-self: center;
 }
 
-    .cover-photo img {
-        background-image: linear-gradient( 0deg, rgb(5, 22, 37) 0%, rgb(54, 68, 81) 70%);
-        border-radius: 50%;
-        border: rgba(5,22,37,1) solid 3px;
-        box-shadow: black 1px 1px 8px;
+.navbar-toggler {
+    position: relative;
+    top: -52px;
+    left: -15px;
+}
+
+
+@media (max-width: 990px) {
+    .cover-photo {
+        visibility: hidden;
     }
+
+    .header-content{
+        grid-template-columns: 1fr;
+    }
+    }
+
