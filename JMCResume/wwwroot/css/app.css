@@ -22,11 +22,12 @@ a, .btn-link {
 .bg-accent {
     background-color: rgb(211, 55, 62);
 }
-.my-button{
-    display: flex;
+.btn-wrapper {
+    display: grid;
     padding: 0;
+    grid-template-columns: 1fr 1fr;
 }
-.my-button a {
+.btn-wrapper a {
     display: inline-block;
     color: white;
     -webkit-box-sizing: content-box;
